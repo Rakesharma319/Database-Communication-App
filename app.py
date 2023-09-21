@@ -80,5 +80,5 @@ df=sq(f'''{CleanSQL}''',conn)
 
 with st.form('my_form'):
   OutPutData=st.form_submit_button('Show Output')
-   if OutPutData:
-      df
+  if OutPutData:
+    df
