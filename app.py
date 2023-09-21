@@ -70,23 +70,24 @@ if UserInput := st.chat_input("Create a Snowflake query for top 5 customers by m
 		full_response = ""
 		for response in openai.ChatCompletion.create(
 			model=st.session_state["openai_model"],
-			messages = [{"role": "user", "content": f"""{Prompt} Question: {UserInput}"""}],
+			messages = [{"role": "user", "content": f'''{Prompt},Question: {UserInput}'''}],
 			temperature=0,
 			max_tokens=300,
 			stream=True
 		):
-			# OutPut_raw=response.choices[0].message["content"]
+			OutPut_raw=response.choices[0].message["content"]
   
-			# # Execute SQL in Database.
-			# conn = sqlite3.connect('chinook.db')
+			# Execute SQL in Database.
+			conn = sqlite3.connect('chinook.db')
 
-			# def sq(str,con=conn):
-			# 	return pd.read_sql('''{}'''.format(str), con)
+			def sq(str,con=conn):
+				return pd.read_sql('''{}'''.format(str), con)
 
-			# RawSQL=f"{OutPut_raw}"
-			# CleanSQL=RawSQL.replace("SQLQuery: \n","")
-			# df=sq(f'''{CleanSQL}''',conn)
+			RawSQL=f"{OutPut_raw}"
+			CleanSQL=RawSQL.replace("SQLQuery: \n","")
+			df=sq(f'''{CleanSQL}''',conn)
 			full_response += response.choices[0].delta.get("content", "")
-			message_placeholder.markdown(full_response + "▌")
+			#message_placeholder.markdown(full_response + "▌")
+			message_placeholder.markdown(df + "▌")
 		message_placeholder.markdown(full_response)
 	st.session_state.messages.append({"role": "assistant", "content": full_response})
