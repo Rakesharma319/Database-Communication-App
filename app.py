@@ -14,10 +14,7 @@ conn = sqlite3.connect('chinook.db')
 c = conn.cursor()
 
 def sq(str,con=conn):
-    curval= c.execute('''{}'''.format(str))
-    for row in curval:
-        output = row.fetchall()
-    return output
+    return pd.read_sql('''{}'''.format(str), con)
 
 df=sq('''SELECT c.CustomerId, c.FirstName, c.LastName, SUM(i.Total) AS TotalInvoice
 FROM Customer c
