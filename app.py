@@ -1,4 +1,4 @@
-from langchain.llms import OpenAI
+# from langchain.llms import OpenAI
 import streamlit as st
 import sqlite3
 import pandas as pd
@@ -41,26 +41,29 @@ Some examples of SQL queries that corrsespond to questions are:
 
 Question: {input}"""
 
-# response = openai.ChatCompletion.create(
-#   model="gpt-3.5-turbo",
-#   messages = [{"role": "user", "content": Prompt}],
-#   temperature=0,
-#   max_tokens=300
-# )
+response = openai.ChatCompletion.create(
+  model="gpt-3.5-turbo",
+  messages = [{"role": "user", "content": Prompt}],
+  temperature=0,
+  max_tokens=300
+)
 
-def generate_response(input_text):
-    llm = OpenAI(temperature=0.7, openai_api_key=openai_api_key)
-    st.info(llm(input_text))
+OutPut_raw=response.choices[0].message["content"]
 
-with st.form('my_form'):
-    text = st.text_area('Enter text:', f"{input}")
-    submitted = st.form_submit_button('Submit')
-    if not openai_api_key.startswith('sk-'):
-        st.warning('Please enter your OpenAI API key!', icon='⚠')
-    if submitted and openai_api_key.startswith('sk-'):
-        OutPut_raw=generate_response(Prompt)
+# def generate_response(input_text):
+#     llm = OpenAI(temperature=0.7, openai_api_key=openai_api_key)
+#     st.info(llm(input_text))
+
+# with st.form('my_form'):
+#     text = st.text_area('Enter text:', f"{input}")
+#     submitted = st.form_submit_button('Submit')
+#     if not openai_api_key.startswith('sk-'):
+#         st.warning('Please enter your OpenAI API key!', icon='⚠')
+#     if submitted and openai_api_key.startswith('sk-'):
+#         OutPut_raw=generate_response(Prompt)
 
 # Execute SQL in Database.
+
 RawSQL=f"{OutPut_raw}"
 CleanSQL=RawSQL.replace("SQLQuery: \n","")
 print(CleanSQL)
