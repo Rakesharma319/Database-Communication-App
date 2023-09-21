@@ -22,5 +22,5 @@ GROUP BY c.CustomerId, c.FirstName, c.LastName
 ORDER BY TotalInvoice DESC
 LIMIT 5''',conn)
 
-st.dataframe(df)
+st.write(df)
 
