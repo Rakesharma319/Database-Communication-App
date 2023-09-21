@@ -16,7 +16,8 @@ st.write(CU(curr_user))
 openai_api_key = st.sidebar.text_input('OpenAI API Key', type='password')
 openai.api_key = openai_api_key
 
-input="Create a Snowflake query for top 5 customers by maximum total invoice."
+User_input="Create a Snowflake query for top 5 customers by maximum total invoice."
+text = st.text_area('Enter text:', f"{input}")
 
 dialect="SQL"
 
@@ -41,7 +42,7 @@ Some examples of SQL queries that corrsespond to questions are:
 
 {few_shot_examples}
 
-Question: {input}"""
+Question: {text}"""
 
 def generate_response(input_text):
   response = openai.ChatCompletion.create(
@@ -59,13 +60,12 @@ OutPut_raw=""
 #     st.info(llm(input_text))
 
 with st.form('my_form'):
-    text = st.text_area('Enter text:', f"{input}")
+    # text = st.text_area('Enter text:', f"{input}")
     submitted = st.form_submit_button('Submit')
     if not openai_api_key.startswith('sk-'):
         st.warning('Please enter your OpenAI API key!', icon='⚠')
     if submitted and openai_api_key.startswith('sk-'):
-      TableSchema
-      generate_response(text)
+      generate_response(Prompt)
 
 # # Execute SQL in Database.
 # conn = sqlite3.connect('chinook.db')
