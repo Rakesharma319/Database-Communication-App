@@ -73,12 +73,12 @@ conn = sqlite3.connect('chinook.db')
 def sq(str,con=conn):
   return pd.read_sql(str, con)
 
-RawSQL=f"{OutPut_raw}"
-CleanSQL=RawSQL.replace("SQLQuery: \n","")
+# RawSQL=f"{OutPut_raw}"
+# CleanSQL=RawSQL.replace("SQLQuery: \n","")
 
-df=sq(CleanSQL,conn)
+# df=sq(OutPut_raw,conn)
 
-with st.form('my_form'):
+with st.form('my_form2'):
   OutPutData=st.form_submit_button('Show Output')
   if OutPutData:
-    df
+    sq(OutPut_raw,conn)
