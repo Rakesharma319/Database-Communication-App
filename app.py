@@ -53,8 +53,9 @@ if openai_api_key.startswith('sk-'):
     temperature=0,
     max_tokens=300
    )
+  OutPut_raw=response.choices[0].message["content"]
   
-OutPut_raw=response.choices[0].message["content"]
+
 
 # def generate_response(input_text):
 #     llm = OpenAI(temperature=0.7, openai_api_key=openai_api_key)
