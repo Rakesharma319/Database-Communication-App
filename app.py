@@ -58,10 +58,10 @@ with st.form('my_form'):
     if not openai_api_key.startswith('sk-'):
         st.warning('Please enter your OpenAI API key!', icon='⚠')
     if submitted and openai_api_key.startswith('sk-'):
-        generate_response(Prompt)
+        OutPut_raw=generate_response(Prompt)
 
 # Execute SQL in Database.
-
+OutPut_raw=response.choices[0].message["content"]
 RawSQL=f"{OutPut_raw}"
 CleanSQL=RawSQL.replace("SQLQuery: \n","")
 print(CleanSQL)
