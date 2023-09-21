@@ -48,7 +48,7 @@ def get_table_schema():
 			# Update the current table name
 			current_table = table_name
 
-		# Output the last table's information
-		output.append(f"table: {current_table}, columns: {', '.join(columns)}")
-		output = "\n".join(output)
+	# Output the last table's information
+	output.append(f"table: {current_table}, columns: {', '.join(columns)}")
+	output = "\n".join(output)
 	return output
