@@ -64,17 +64,17 @@ with st.form('my_form'):
     if not openai_api_key.startswith('sk-'):
         st.warning('Please enter your OpenAI API key!', icon='⚠')
     if submitted and openai_api_key.startswith('sk-'):
-        OutPut_raw=generate_response(text)
+        generate_response(text)
 
-# Execute SQL in Database.
-conn = sqlite3.connect('chinook.db')
+# # Execute SQL in Database.
+# conn = sqlite3.connect('chinook.db')
 
-def sq(str,con=conn):
-    return pd.read_sql('''{}'''.format(str), con)
+# def sq(str,con=conn):
+#     return pd.read_sql('''{}'''.format(str), con)
 
-RawSQL=f"{OutPut_raw}"
-CleanSQL=RawSQL.replace("SQLQuery: \n","")
-print(CleanSQL)
+# RawSQL=f"{OutPut_raw}"
+# CleanSQL=RawSQL.replace("SQLQuery: \n","")
+# # print(CleanSQL)
 
-df=sq(f'''{CleanSQL}''',conn)
-print(df)
+# df=sq(f'''{CleanSQL}''',conn)
+# # print(df)
