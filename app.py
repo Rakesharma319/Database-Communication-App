@@ -17,7 +17,7 @@ openai_api_key = st.sidebar.text_input('OpenAI API Key', type='password')
 openai.api_key = openai_api_key
 
 User_input="Create a Snowflake query for top 5 customers by maximum total invoice."
-text = st.text_area('Enter text:', f"{input}")
+text = st.text_area('Enter text:', f"{User_input}")
 
 dialect="SQL"
 
