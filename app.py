@@ -55,15 +55,15 @@ if openai_api_key.startswith('sk-'):
    )
   OutPut_raw=response.choices[0].message["content"]
   
-# Execute SQL in Database.
-conn = sqlite3.connect('chinook.db')
+  # Execute SQL in Database.
+  conn = sqlite3.connect('chinook.db')
 
-def sq(str,con=conn):
-  return pd.read_sql('''{}'''.format(str), con)
+  def sq(str,con=conn):
+    return pd.read_sql('''{}'''.format(str), con)
 
-RawSQL=f"{OutPut_raw}"
-CleanSQL=RawSQL.replace("SQLQuery: \n","")
-df=sq(f'''{CleanSQL}''',conn)
+  RawSQL=f"{OutPut_raw}"
+  CleanSQL=RawSQL.replace("SQLQuery: \n","")
+  df=sq(f'''{CleanSQL}''',conn)
 
 
 # def generate_response(input_text):
