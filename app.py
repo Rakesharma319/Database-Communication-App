@@ -7,6 +7,8 @@ st.title('CM DataChat App')
 curr_user=st.experimental_user['email']
 st.write(CU(curr_user))
 
+# Connect database
+
 conn = sqlite3.connect('chinook.db')
 c = conn.cursor()
 
@@ -19,5 +21,6 @@ JOIN Invoice i ON c.CustomerId = i.CustomerId
 GROUP BY c.CustomerId, c.FirstName, c.LastName
 ORDER BY TotalInvoice DESC
 LIMIT 5''',conn)
-print(df)
+
+st.dataframe(df)
 
