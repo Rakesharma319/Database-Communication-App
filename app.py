@@ -57,7 +57,7 @@ for message in st.session_state.messages:
 		st.markdown(message["content"])
 		
 # Accept user input
-if UserInput := st.chat_input("What is up?"):
+if UserInput := st.chat_input("Create a Snowflake query for top 5 customers by maximum total invoice"):
 	# Add user message to chat history
 	st.session_state.messages.append({"role": "user", "content": UserInput})
 	# Display user message in chat message container
@@ -75,17 +75,17 @@ if UserInput := st.chat_input("What is up?"):
 			max_tokens=300,
 			stream=True
 		):
-			# OutPut_raw=response.choices[0].message["content"]
+			OutPut_raw=response.choices[0].message["content"]
   
-			# # Execute SQL in Database.
-			# conn = sqlite3.connect('chinook.db')
+			# Execute SQL in Database.
+			conn = sqlite3.connect('chinook.db')
 
-			# def sq(str,con=conn):
-			# 	return pd.read_sql('''{}'''.format(str), con)
+			def sq(str,con=conn):
+				return pd.read_sql('''{}'''.format(str), con)
 
-			# RawSQL=f"{OutPut_raw}"
-			# CleanSQL=RawSQL.replace("SQLQuery: \n","")
-			# df=sq(f'''{CleanSQL}''',conn)
+			RawSQL=f"{OutPut_raw}"
+			CleanSQL=RawSQL.replace("SQLQuery: \n","")
+			df=sq(f'''{CleanSQL}''',conn)
 			full_response += response.choices[0].get("content", "")
 			message_placeholder.markdown(full_response + "▌")
 		message_placeholder.markdown(full_response)
