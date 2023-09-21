@@ -60,12 +60,12 @@ OutPut_raw=""
 #     st.info(llm(input_text))
 
 with st.form('my_form'):
-    # text = st.text_area('Enter text:', f"{input}")
     submitted = st.form_submit_button('Submit')
     if not openai_api_key.startswith('sk-'):
         st.warning('Please enter your OpenAI API key!', icon='⚠')
     if submitted and openai_api_key.startswith('sk-'):
-      generate_response(Prompt)
+      OutPut_raw=generate_response(Prompt)
+      OutPut_raw
 
 # # Execute SQL in Database.
 # conn = sqlite3.connect('chinook.db')
@@ -75,7 +75,10 @@ with st.form('my_form'):
 
 # RawSQL=f"{OutPut_raw}"
 # CleanSQL=RawSQL.replace("SQLQuery: \n","")
-# # print(CleanSQL)
 
 # df=sq(f'''{CleanSQL}''',conn)
-# # print(df)
+
+# with st.form('my_form'):
+#   ShowSQL=st.form_submit_button('Show SQL')
+#    if submitted and openai_api_key.startswith('sk-'):
+#       generate_response(Prompt)
