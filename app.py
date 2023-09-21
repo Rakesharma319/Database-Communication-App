@@ -89,6 +89,6 @@ if UserInput := st.chat_input("Create a Snowflake query for top 5 customers by m
 			CleanSQL=RawSQL.replace("SQLQuery: \n","")
 			df=sq(f'''{CleanSQL}''',conn)
 			
-		# 	message_placeholder.markdown(df + "▌")
-		# message_placeholder.markdown(df)
+		 	message_placeholder.markdown(df + "▌")
+		 message_placeholder.markdown(df)
 	st.session_state.messages.append({"role": "assistant", "content": df})
