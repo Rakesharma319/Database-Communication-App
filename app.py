@@ -70,7 +70,7 @@ if UserInput := st.chat_input("What is up?"):
 		full_response = ""
 		for response in openai.ChatCompletion.create(
 			model=st.session_state["openai_model"],
-			messages = [{"role": "user", "content": Prompt}],
+			messages = [{"role": "user", "content": f'''{prompt},Question: {UserInput}'''}],
 			temperature=0,
 			max_tokens=300,
 			stream=True
