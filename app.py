@@ -59,7 +59,7 @@ for message in st.session_state.messages:
 # Accept user input
 if UserInput := st.chat_input("What is up?"):
 	# Add user message to chat history
-	st.session_state.messages.append({"role": "user", "content": f'''{prompt},Question: {UserInput}'''})
+	st.session_state.messages.append({"role": "user", "content": f'''{Prompt},Question: {UserInput}'''})
 	# Display user message in chat message container
 	with st.chat_message("user"):
 		st.markdown(UserInput)
@@ -70,7 +70,7 @@ if UserInput := st.chat_input("What is up?"):
 		full_response = ""
 		for response in openai.ChatCompletion.create(
 			model=st.session_state["openai_model"],
-			messages = [{"role": "user", "content": f'''{prompt},Question: {UserInput}'''}],
+			messages = [{"role": "user", "content": f'''{Prompt},Question: {UserInput}'''}],
 			temperature=0,
 			max_tokens=300,
 			stream=True
