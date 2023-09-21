@@ -67,6 +67,10 @@ with st.form('my_form'):
         OutPut_raw=generate_response(text)
 
 # Execute SQL in Database.
+conn = sqlite3.connect('/content/sample_data/chinook.db')
+
+def sq(str,con=conn):
+    return pd.read_sql('''{}'''.format(str), con)
 
 RawSQL=f"{OutPut_raw}"
 CleanSQL=RawSQL.replace("SQLQuery: \n","")
