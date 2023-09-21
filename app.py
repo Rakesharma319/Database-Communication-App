@@ -43,14 +43,16 @@ Some examples of SQL queries that corrsespond to questions are:
 
 Question: {input}"""
 
-response = openai.ChatCompletion.create(
-  model="gpt-3.5-turbo",
-  messages = [{"role": "user", "content": Prompt}],
-  temperature=0,
-  max_tokens=300
-)
+def generate_response(input_text):
+  response = openai.ChatCompletion.create(
+    model="gpt-3.5-turbo",
+    messages = [{"role": "user", "content": input_text}],
+    temperature=0,
+    max_tokens=300
+  )
+  return response.choices[0].message["content"]
 
-OutPut_raw=response.choices[0].message["content"]
+OutPut_raw=generate_response(Prompt)
 
 # def generate_response(input_text):
 #     llm = OpenAI(temperature=0.7, openai_api_key=openai_api_key)
