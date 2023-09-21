@@ -61,7 +61,6 @@ with st.form('my_form'):
         OutPut_raw=generate_response(Prompt)
 
 # Execute SQL in Database.
-OutPut_raw=response.choices[0].message["content"]
 RawSQL=f"{OutPut_raw}"
 CleanSQL=RawSQL.replace("SQLQuery: \n","")
 print(CleanSQL)
