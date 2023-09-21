@@ -9,5 +9,5 @@ st.title('CM DataChat App')
 curr_user=st.experimental_user['email']
 st.write(CU(curr_user))
 
-st.write(gts)
+st.write(gts())
 
