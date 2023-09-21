@@ -52,6 +52,7 @@ def generate_response(input_text):
   )
   return response.choices[0].message["content"]
 
+OutPut_raw=""
 OutPut_raw=generate_response(Prompt)
 
 # def generate_response(input_text):
