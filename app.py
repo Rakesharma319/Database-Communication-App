@@ -76,7 +76,7 @@ def sq(str,con=conn):
 RawSQL=f"{OutPut_raw}"
 CleanSQL=RawSQL.replace("SQLQuery: \n","")
 
-df=sq(f'''{CleanSQL}''',conn)
+df=sq(f"{CleanSQL}",conn)
 
 with st.form('my_form'):
   OutPutData=st.form_submit_button('Show Output')
