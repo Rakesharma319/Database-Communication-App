@@ -44,6 +44,8 @@ Some examples of SQL queries that corrsespond to questions are:
 
 Question: {text}"""
 
+response=[]
+
 if openai_api_key.startswith('sk-'):
   response = openai.ChatCompletion.create(
     model="gpt-3.5-turbo",
