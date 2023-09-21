@@ -75,7 +75,7 @@ df=sq(f'''{CleanSQL}''',conn)
 with st.form('my_form'):
     submitted = st.form_submit_button('Submit')
     if not openai_api_key.startswith('sk-'):
-        st.warning('Please enter your OpenAI API key!', icon='⚠')
+      st.warning('Please enter your OpenAI API key!', icon='⚠')
     if submitted and openai_api_key.startswith('sk-'):
       OutPut_raw
 
