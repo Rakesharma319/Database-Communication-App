@@ -59,3 +59,12 @@ with st.form('my_form'):
         st.warning('Please enter your OpenAI API key!', icon='⚠')
     if submitted and openai_api_key.startswith('sk-'):
         generate_response(Prompt)
+
+# Execute SQL in Database.
+
+RawSQL=f"{OutPut_raw}"
+CleanSQL=RawSQL.replace("SQLQuery: \n","")
+print(CleanSQL)
+
+df=sq(f'''{CleanSQL}''',conn)
+print(df)
