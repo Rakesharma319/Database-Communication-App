@@ -24,31 +24,31 @@ def get_table_schema():
 		#print(row["name"])
 		#table_schema="DWH"
 		table_name_single=row["name"]
-	# table_name = f"{table_schema}.{table_name_single}"
-	df = sq(f'''PRAGMA table_info({table_name_single});''',conn)
-	for index,row in df.iterrows():
 		# table_name = f"{table_schema}.{table_name_single}"
-		table_name = f"{table_name_single}"
-		column_name = row["name"]
-		data_type = row["type"]
-		if " " in table_name:
-			table_name = f"[{table_name}]"
+		df = sq(f'''PRAGMA table_info({table_name_single});''',conn)
+		for index,row in df.iterrows():
+			# table_name = f"{table_schema}.{table_name_single}"
+			table_name = f"{table_name_single}"
 			column_name = row["name"]
-		if " " in column_name:
-			column_name = f"[{name}]"
+			data_type = row["type"]
+			if " " in table_name:
+				table_name = f"[{table_name}]"
+				column_name = row["name"]
+			if " " in column_name:
+				column_name = f"[{name}]"
 
-		# If the table name has changed, output the previous table's information
-		if current_table != table_name and current_table != "":
-			output.append(f"table: {current_table}, columns: {', '.join(columns)}")
-			columns = []
+			# If the table name has changed, output the previous table's information
+			if current_table != table_name and current_table != "":
+				output.append(f"table: {current_table}, columns: {', '.join(columns)}")
+				columns = []
 
-		# Add the current column information to the list of columns for the current table
-		columns.append(f"{column_name} {data_type}")
+			# Add the current column information to the list of columns for the current table
+			columns.append(f"{column_name} {data_type}")
 
-		# Update the current table name
-		current_table = table_name
+			# Update the current table name
+			current_table = table_name
 
-	# Output the last table's information
-	output.append(f"table: {current_table}, columns: {', '.join(columns)}")
-	output = "\n".join(output)
+		# Output the last table's information
+		output.append(f"table: {current_table}, columns: {', '.join(columns)}")
+		output = "\n".join(output)
 	return output
