@@ -67,18 +67,18 @@ with st.form('my_form'):
       OutPut_raw=generate_response(Prompt)
       OutPut_raw
 
-# # Execute SQL in Database.
-# conn = sqlite3.connect('chinook.db')
+# Execute SQL in Database.
+conn = sqlite3.connect('chinook.db')
 
-# def sq(str,con=conn):
-#     return pd.read_sql('''{}'''.format(str), con)
+def sq(str,con=conn):
+    return pd.read_sql('''{}'''.format(str), con)
 
-# RawSQL=f"{OutPut_raw}"
-# CleanSQL=RawSQL.replace("SQLQuery: \n","")
+RawSQL=f"{OutPut_raw}"
+CleanSQL=RawSQL.replace("SQLQuery: \n","")
 
-# df=sq(f'''{CleanSQL}''',conn)
+df=sq(f'''{CleanSQL}''',conn)
 
-# with st.form('my_form'):
-#   ShowSQL=st.form_submit_button('Show SQL')
-#    if submitted and openai_api_key.startswith('sk-'):
-#       generate_response(Prompt)
+with st.form('my_form'):
+  OutPutData=st.form_submit_button('Show Output')
+   if ShowSQL:
+      df
