@@ -45,30 +45,30 @@ Some examples of SQL queries that corrsespond to questions are:
 
 # Set a default model
 if "openai_model" not in st.session_state:
-    st.session_state["openai_model"] = "gpt-3.5-turbo"
+	st.session_state["openai_model"] = "gpt-3.5-turbo"
 
 # Initialize chat history
 if "messages" not in st.session_state:
-    st.session_state.messages = []
+	st.session_state.messages = []
 
 # Display chat messages from history on app rerun
 for message in st.session_state.messages:
-    with st.chat_message(message["role"]):
-        st.markdown(message["content"])
+	with st.chat_message(message["role"]):
+		st.markdown(message["content"])
 		
 # Accept user input
 if UserInput := st.chat_input("What is up?"):
 	# Add user message to chat history
-    st.session_state.messages.append({"role": "user", "content": f'''{prompt},Question: {UserInput}'''})
+	st.session_state.messages.append({"role": "user", "content": f'''{prompt},Question: {UserInput}'''})
 	# Display user message in chat message container
-    with st.chat_message("user"):
-        st.markdown(UserInput)
+	with st.chat_message("user"):
+		st.markdown(UserInput)
 		
 	# Display assistant response in chat message container
-    with st.chat_message("assistant"):
-        message_placeholder = st.empty()
-        full_response = ""
-        for response in openai.ChatCompletion.create(
+	with st.chat_message("assistant"):
+		message_placeholder = st.empty()
+		full_response = ""
+		for response in openai.ChatCompletion.create(
 			model=st.session_state["openai_model"],
 			messages = [{"role": "user", "content": Prompt}],
 			temperature=0,
