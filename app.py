@@ -78,7 +78,9 @@ with st.form('my_form'):
         st.warning('Please enter your OpenAI API key!', icon='⚠')
     if submitted and openai_api_key.startswith('sk-'):
       OutPut_raw
-      OutPutData=st.form_submit_button('Show Output')
-    if OutPutData:
+
+with st.from('my_form2')
+    OutPutData=st.form_submit_button('Show Output')
+    if OutPutData and openai_api_key.startswith('sk-'):
       df
       
