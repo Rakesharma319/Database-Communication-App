@@ -12,7 +12,7 @@ curr_user=st.experimental_user['email']
 st.write(CU(curr_user))
 
 
-# Open Ai Test To SQL Generate
+# Open Ai Text To SQL Generate
 openai_api_key = st.sidebar.text_input('OpenAI API Key', type='password')
 openai.api_key = openai_api_key
 
@@ -43,8 +43,6 @@ Some examples of SQL queries that corrsespond to questions are:
 {few_shot_examples}
 
 Question: {text}"""
-
-response=[]
 
 if openai_api_key.startswith('sk-'):
   response = openai.ChatCompletion.create(
@@ -77,10 +75,10 @@ with st.form('my_form'):
     if not openai_api_key.startswith('sk-'):
       st.warning('Please enter your OpenAI API key!', icon='⚠')
     if submitted and openai_api_key.startswith('sk-'):
-      OutPut_raw
+      df
 
 with st.form('my_form2'):
-    OutPutData=st.form_submit_button('Show Output')
-    if OutPutData and openai_api_key.startswith('sk-'):
-      df
+    ShowSQL=st.form_submit_button('Show SQL')
+    if ShowSQL and openai_api_key.startswith('sk-'):
+      OutPut_raw
       
