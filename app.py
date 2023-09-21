@@ -70,7 +70,7 @@ if UserInput := st.chat_input("Create a Snowflake query for top 5 customers by m
 		full_response = ""
 		for response in openai.ChatCompletion.create(
 			model=st.session_state["openai_model"],
-			messages = [{"role": "user", "content": f'''{Prompt},Question: {UserInput}'''}],
+			messages = [{"role": "user", "content": f"""{Prompt} Question: {UserInput}"""}],
 			temperature=0,
 			max_tokens=300,
 			stream=True
