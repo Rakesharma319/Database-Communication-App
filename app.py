@@ -10,17 +10,14 @@ st.write(CU(curr_user))
 conn = sqlite3.connect('chinook.db')
 c = conn.cursor()
 
-c.execute('''SELECT c.CustomerId, c.FirstName, c.LastName, SUM(i.Total) AS TotalInvoice
+def sq(str,con=conn):
+    return pd.read_sql('''{}'''.format(str), con)
+
+df=sq('''SELECT c.CustomerId, c.FirstName, c.LastName, SUM(i.Total) AS TotalInvoice
 FROM Customer c
 JOIN Invoice i ON c.CustomerId = i.CustomerId
 GROUP BY c.CustomerId, c.FirstName, c.LastName
 ORDER BY TotalInvoice DESC
-LIMIT 5''')
-
-print("All the data")
-output = c.fetchall()
-print(st.dataframe(row) )
-
-# Close the connection
-c.close()
+LIMIT 5''',conn)
+print(df)
 
