@@ -71,12 +71,12 @@ with st.form('my_form'):
 conn = sqlite3.connect('chinook.db')
 
 def sq(str,con=conn):
-  return pd.read_sql('''{}'''.format(str), con)
+  return pd.read_sql(str, con)
 
 RawSQL=f"{OutPut_raw}"
 CleanSQL=RawSQL.replace("SQLQuery: \n","")
 
-df=sq(f"{CleanSQL}",conn)
+df=sq(CleanSQL,conn)
 
 with st.form('my_form'):
   OutPutData=st.form_submit_button('Show Output')
