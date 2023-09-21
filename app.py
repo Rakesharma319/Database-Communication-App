@@ -13,7 +13,7 @@ st.write(CU(curr_user))
 # Open Ai Test To SQL Generate
 openai_api_key = st.sidebar.text_input('OpenAI API Key', type='password')
 
-input=st.sidebar.text_input("Create a Snowflake query for top 5 customers by maximum total invoice.")
+input="Create a Snowflake query for top 5 customers by maximum total invoice."
 
 dialect="SQL"
 
@@ -52,7 +52,7 @@ def generate_response(input_text):
     st.info(llm(input_text))
 
 with st.form('my_form'):
-    text = st.text_area('Enter text:', ' ')
+    text = st.text_area('Enter text:', "{input}")
     submitted = st.form_submit_button('Submit')
     if not openai_api_key.startswith('sk-'):
         st.warning('Please enter your OpenAI API key!', icon='⚠')
