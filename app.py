@@ -1,5 +1,6 @@
 import streamlit as st
 import sqlite3
+import pandas as pd
 from Curr_User_Fun import Current_User as CU
 
 st.title('CM DataChat App')
