@@ -14,6 +14,7 @@ st.write(CU(curr_user))
 
 # Open Ai Test To SQL Generate
 openai_api_key = st.sidebar.text_input('OpenAI API Key', type='password')
+openai.api_key = openai_api_key
 
 input="Create a Snowflake query for top 5 customers by maximum total invoice."
 
