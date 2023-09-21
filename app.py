@@ -50,7 +50,7 @@ def generate_response(input_text):
     temperature=0,
     max_tokens=300
   )
-  return response.choices[0].message["content"]
+  st.info(response.choices[0].message["content"])
 
 OutPut_raw=""
 
