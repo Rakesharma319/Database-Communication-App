@@ -1,3 +1,5 @@
+import streamlit as st
+
 st.title('CM DataChat App')
 st.write(st.experimental_user['email'])
 
