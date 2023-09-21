@@ -19,8 +19,8 @@ LIMIT 5''')
 
 print("All the data")
 output = c.fetchall()
-for row in output:
-  print(row)
+print(st.dataframe(row) )
 
 # Close the connection
 c.close()
+
