@@ -28,8 +28,8 @@ tables_List = sq(
     where type='table';'''
     ,conn)
 
-st.header("Tables List For Reference")
-st.sidebar.text(tables_List)
+st.subheader("Tables List For Reference")
+st.sidebar.write(tables_List)
 
 
 ########### Frame Prompt
@@ -54,8 +54,6 @@ results of the query would be in Python pandas dataframe contain the results of 
             - If you want to show user data which is a text or a pandas dataframe or a list, use ```show(data)```
             - Never use print(). User don't see anything with print()
         5. Lastly, don't forget to deal with data quality problem. You should apply data imputation technique to deal with missing data or NAN data.
-        6. Always follow the flow of Thought: , Observation:, Action: and Answer: as in template below strictly. 
-
 SQLQuery: "SQL Query to run"
 
 Only use the following tables:
