@@ -80,7 +80,7 @@ for message in st.session_state.messages:
 	with st.chat_message(message["role"]):
 		st.markdown(message["content"])
 		
-with col2:	
+
 	# Display assistant response in chat message container
 	with st.chat_message("assistant"):
 		message_placeholder = st.empty()
