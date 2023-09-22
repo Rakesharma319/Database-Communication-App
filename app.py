@@ -100,5 +100,5 @@ if UserInput := st.chat_input("Create a Snowflake query for top 5 customers by m
 	RawSQL=f"{OutPut_raw}"
 	CleanSQL=RawSQL.replace("SQLQuery: \n","")
 	Database_Output=sq(f'''{CleanSQL}''',conn)
-	st.markdown(Database_Output)
+	st.write(Database_Output)
 	
