@@ -35,8 +35,6 @@ st.sidebar.table(tables_List)
 
 dialect="SQL"
 
-Result_Format ="After successfully running SQL , if result is in tablix format then display properly in table of row and column format,if single row then display as simple text."
-
 few_shot_examples="""Select col1,col2
 from tabl t1 join tabl2 t2 on t1.col1=t2.col2
 Where t1.col
@@ -45,7 +43,8 @@ Order By t2.Col1;"""
 
 TableSchema = gts()
 
-Prompt = f"""Given an input question, first create a syntactically correct {dialect} query with only required tables and coloumns to run.
+Prompt = f"""Given an input question, first create a syntactically correct {dialect} query to run, 
+then look at the results of the query and return the answer, always show distinct data.
 
 SQLQuery: "SQL Query to run"
 
@@ -103,5 +102,5 @@ if UserInput := st.chat_input("Create a Snowflake query for top 5 customers by m
 			Database_Output=sq(f'''{CleanSQL}''',conn)
 	#st.text(full_response)
 	#st.table(Database_Output)
-	#st.session_state.messages.append({"role": "assistant", "content": full_response})
-	st.session_state.messages.append({"role": "assistant", "content": Database_Output})
+	st.session_state.messages.append({"role": "assistant", "content": full_response})
+	#st.session_state.messages.append({"role": "assistant", "content": Database_Output})
