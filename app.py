@@ -15,6 +15,11 @@ st.write(CU(curr_user))
 openai_api_key = st.sidebar.text_input('OpenAI API Key', type='password')
 openai.api_key = openai_api_key
 
+######## SQL Connection
+conn = sqlite3.connect('chinook.db')
+def sq(str,con=conn):
+	return pd.read_sql('''{}'''.format(str), con)
+
 ########### Frame Prompt
 
 dialect="SQL"
@@ -27,7 +32,7 @@ Order By t2.Col1;"""
 
 TableSchema = gts()
 
-Prompt = f"""Given an input question, first create a syntactically correct {dialect} query to run, then look at the results of the query and return the answer.
+Prompt = f"""Given an input question, first create a syntactically correct {dialect} query with only required tables and coloumns to run, then look at the results of the query and return the answer.
 Use the following format:
 
 SQLQuery: "SQL Query to run"
@@ -82,10 +87,6 @@ if UserInput := st.chat_input("Create a Snowflake query for top 5 customers by m
 	
 	# Execute SQL in Database.
 	OutPut_raw=full_response
-	conn = sqlite3.connect('chinook.db')
-	def sq(str,con=conn):
-		return pd.read_sql('''{}'''.format(str), con)
-
 	RawSQL=f"{OutPut_raw}"
 	CleanSQL=RawSQL.replace("SQLQuery: \n","")
 	df=sq(f'''{CleanSQL}''',conn)
