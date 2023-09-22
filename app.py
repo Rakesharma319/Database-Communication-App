@@ -79,3 +79,5 @@ if UserInput := st.chat_input("Create a Snowflake query for top 5 customers by m
 			message_placeholder.markdown(full_response + "▌")
 		message_placeholder.markdown(full_response)
 	st.session_state.messages.append({"role": "assistant", "content": full_response})
+	
+st.markdown(full_response)
