@@ -48,12 +48,8 @@ TableSchema = gts()
 
 Prompt = f"""Given an input question, first create a syntactically correct {dialect} query with only required tables and coloumns to run.
 results of the query would be in Python pandas dataframe contain the results of the query.
-        2. Use plotly library for data visualization. 
-        3. Use observe(label: str, data: any) utility function to observe data under the label for your evaluation. Use observe() function instead of print() as this is executed in streamlit environment. Due to system limitation, you will only see the first 10 rows of the dataset.
-            - If you want to show  user a plotly visualization, then use ```show(fig)`` 
-            - If you want to show user data which is a text or a pandas dataframe or a list, use ```show(data)```
-            - Never use print(). User don't see anything with print()
-        5. Lastly, don't forget to deal with data quality problem. You should apply data imputation technique to deal with missing data or NAN data.
+        2. Use plotly library for data visualization."
+
 SQLQuery: "SQL Query to run"
 
 Only use the following tables:
