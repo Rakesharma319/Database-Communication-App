@@ -11,6 +11,10 @@ st.title("DataChat App")
 curr_user=st.experimental_user['email']
 st.write(CU(curr_user))
 
+########### Ask api key
+openai_api_key = st.sidebar.text_input('OpenAI API Key', type='password')
+openai.api_key = openai_api_key
+
 ######## SQL Connection
 conn = sqlite3.connect('chinook.db')
 def sq(str,con=conn):
@@ -24,20 +28,7 @@ tables_List = sq(
     where type='table';'''
     ,conn)
 
-#st.sidebar.table(tables_List)
-
-col1, col2 = st.columns(2)
-
-with col1:
-	########### Ask api key
-	openai_api_key = st.sidebar.text_input('OpenAI API Key', type='password')
-	openai.api_key = openai_api_key
-	
-	ChatInput=st.text_input("Create a Snowflake query for top 5 customers by maximum total invoice")
-	
-	st.text("Table List")
-	st.table(tables_List)
-
+st.sidebar.table(tables_List)
 
 
 ########### Frame Prompt
@@ -80,7 +71,14 @@ for message in st.session_state.messages:
 	with st.chat_message(message["role"]):
 		st.markdown(message["content"])
 		
-
+# Accept user input
+if UserInput := st.chat_input("Create a Snowflake query for top 5 customers by maximum total invoice"):
+	# Add user message to chat history
+	#st.session_state.messages.append({"role": "user", "content": UserInput})
+	# Display user message in chat message container
+	with st.chat_message("user"):
+		st.markdown(UserInput)
+		
 	# Display assistant response in chat message container
 	with st.chat_message("assistant"):
 		message_placeholder = st.empty()
@@ -105,8 +103,3 @@ for message in st.session_state.messages:
 	st.table(Database_Output)
 	#st.session_state.messages.append({"role": "assistant", "content": full_response})
 	#st.session_state.messages.append({"role": "assistant", "content": Database_Output})
-
-	
-	
-
-	
