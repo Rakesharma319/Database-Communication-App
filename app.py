@@ -29,7 +29,7 @@ tables_List = sq(
     ,conn)
 
 st.subheader("Tables List For Reference")
-st.sidebar.write(tables_List)
+st.sidebar.table(tables_List)
 
 
 ########### Frame Prompt
@@ -110,5 +110,5 @@ if UserInput := st.chat_input("Create a Snowflake query for top 5 customers by m
 	RawSQL=f"{OutPut_raw}"
 	CleanSQL=RawSQL.replace("SQLQuery: \n","")
 	Database_Output=sq(f'''{CleanSQL}''',conn)
-	st.write(Database_Output)
+	st.table(Database_Output)
 	
