@@ -43,7 +43,7 @@ Order By t2.Col1;"""
 
 TableSchema = gts()
 
-Prompt = f"""Given an input question, first create a syntactically correct {dialect} query to run, always show distinct data and avoide duplicate columns in select statement.
+Prompt = f"""Given an input question, first create a syntactically correct {dialect} query to run, always show distinct data and avoide duplicate columns.
 
 SQLQuery: "SQL Query to run"
 
@@ -103,8 +103,3 @@ if UserInput := st.chat_input("Create a Snowflake query for top 5 customers by m
 	st.table(Database_Output)
 	#st.session_state.messages.append({"role": "assistant", "content": full_response})
 	#st.session_state.messages.append({"role": "assistant", "content": Database_Output})
-
-	
-	
-
-	
