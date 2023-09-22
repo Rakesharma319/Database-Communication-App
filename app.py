@@ -24,6 +24,12 @@ def sq(str,con=conn):
 
 dialect="SQL"
 
+Result_Format = """
+After successfully running SQL , result display should be formatted as per output, as below mentioned,
+1. if result is in row and column then it should be proper table format.
+2. if single row then display as simple text
+"""
+
 few_shot_examples="""Select col1,col2
 from tabl t1 join tabl2 t2 on t1.col1=t2.col2
 Where t1.col
@@ -37,7 +43,7 @@ Use the following format:
 
 SQLQuery: "SQL Query to run"
 
-Database_Output : "Display result of SQL qyery after successfully run in proper row and columns format."
+Database_Output : {Result_Format}
 
 Only use the following tables:
 
@@ -91,6 +97,8 @@ if UserInput := st.chat_input("Create a Snowflake query for top 5 customers by m
 		RawSQL=f"{OutPut_raw}"
 		CleanSQL=RawSQL.replace("SQLQuery: \n","")
 		Database_Output=sq(f'''{CleanSQL}''',conn)
-		st.markdown(Database_Output)
+		#st.markdown(Database_Output)
 	st.session_state.messages.append({"role": "assistant", "content": full_response})
+	message_placeholder = st.empty()
+	st.session_state.messages.append({"role": "assistant", "content": Database_Output})
 	
