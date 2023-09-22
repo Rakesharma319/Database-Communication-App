@@ -24,7 +24,7 @@ def sq(str,con=conn):
 
 dialect="SQL"
 
-Result_Format ="After successfully running SQL , if result is in tablix format then display properly in row and column,if single row then display as simple text."
+Result_Format ="After successfully running SQL , if result is in tablix format then display properly in table of row and column format,if single row then display as simple text."
 
 few_shot_examples="""Select col1,col2
 from tabl t1 join tabl2 t2 on t1.col1=t2.col2
@@ -38,7 +38,6 @@ Prompt = f"""Given an input question, first create a syntactically correct {dial
 Use the following format:
 
 SQLQuery: "SQL Query to run"
-
 
 Only use the following tables:
 
