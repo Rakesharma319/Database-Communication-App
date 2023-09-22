@@ -47,8 +47,6 @@ Order By t2.Col1;"""
 TableSchema = gts()
 
 Prompt = f"""Given an input question, first create a syntactically correct {dialect} query with only required tables and coloumns to run.
-results of the query would be in Python pandas dataframe contain the results of the query.
-        2. Use plotly library for data visualization."
 
 SQLQuery: "SQL Query to run"
 
