@@ -43,8 +43,7 @@ Order By t2.Col1;"""
 
 TableSchema = gts()
 
-Prompt = f"""Given an input question, first create a syntactically correct {dialect} query to run, 
-then look at the results of the query and return the answer, always show distinct data.
+Prompt = f"""Given an input question, first create a syntactically correct {dialect} query to run, always show distinct data.
 
 SQLQuery: "SQL Query to run"
 
