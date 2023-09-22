@@ -20,6 +20,18 @@ conn = sqlite3.connect('chinook.db')
 def sq(str,con=conn):
 	return pd.read_sql('''{}'''.format(str), con)
 
+######### Table lists for reference
+
+tables_List = sq(
+    '''select distinct name
+    from sqlite_master
+    where type='table';'''
+    ,conn)
+
+st.header("Tables List For Reference")
+st.sidebar.text(tables_List)
+
+
 ########### Frame Prompt
 
 dialect="SQL"
