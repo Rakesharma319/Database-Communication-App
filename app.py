@@ -72,9 +72,9 @@ for message in st.session_state.messages:
 		st.markdown(message["content"])
 		
 # Accept user input
-if UserInput := st.text("Create a Snowflake query for top 5 customers by maximum total invoice"):
+if UserInput := st.chat_input("Create a Snowflake query for top 5 customers by maximum total invoice"):
 	# Add user message to chat history
-	st.session_state.messages.append({"role": "user", "content": UserInput})
+	#st.session_state.messages.append({"role": "user", "content": UserInput})
 	# Display user message in chat message container
 	with st.chat_message("user"):
 		st.markdown(UserInput)
