@@ -33,6 +33,8 @@ st.sidebar.table(tables_List)
 
 ########### Frame Prompt
 
+dialect="SQL"
+
 few_shot_examples="""Select col1,col2
 from tabl t1 join tabl2 t2 on t1.col1=t2.col2
 Where t1.col
@@ -41,7 +43,7 @@ Order By t2.Col1;"""
 
 TableSchema = gts()
 
-Prompt = f"""Given an input question, first create a syntactically correct sql query to run, always show distinct data .
+Prompt = f"""Given an input question, first create a syntactically correct {dialect} query to run, always show distinct data.
 
 SQLQuery: "SQL Query to run"
 
@@ -72,7 +74,7 @@ for message in st.session_state.messages:
 # Accept user input
 if UserInput := st.chat_input("Create a Snowflake query for top 5 customers by maximum total invoice"):
 	# Add user message to chat history
-	#st.session_state.messages.append({"role": "user", "content": UserInput})
+	st.session_state.messages.append({"role": "user", "content": UserInput})
 	# Display user message in chat message container
 	with st.chat_message("user"):
 		st.markdown(UserInput)
@@ -96,7 +98,6 @@ if UserInput := st.chat_input("Create a Snowflake query for top 5 customers by m
 		OutPut_raw=full_response
 		RawSQL=f"{OutPut_raw}"
 		CleanSQL=RawSQL.replace("SQLQuery: \n","")
-		CleanSQL=RawSQL.replace("SQLQuery: ","")
 		Database_Output=sq(f'''{CleanSQL}''',conn)
 	st.text(full_response)
 	st.table(Database_Output)
