@@ -34,8 +34,15 @@ Order By t2.Col1;"""
 
 TableSchema = gts()
 
-Prompt = f"""Given an input question, first create a syntactically correct {dialect} query with only required tables and coloumns to run, then look at the results of the query and return the answer.
-Use the following format:
+Prompt = f"""Given an input question, first create a syntactically correct {dialect} query with only required tables and coloumns to run.
+results of the query would be in Python pandas dataframe contain the results of the query.
+        2. Use plotly library for data visualization. 
+        3. Use observe(label: str, data: any) utility function to observe data under the label for your evaluation. Use observe() function instead of print() as this is executed in streamlit environment. Due to system limitation, you will only see the first 10 rows of the dataset.
+            - If you want to show  user a plotly visualization, then use ```show(fig)`` 
+            - If you want to show user data which is a text or a pandas dataframe or a list, use ```show(data)```
+            - Never use print(). User don't see anything with print()
+        5. Lastly, don't forget to deal with data quality problem. You should apply data imputation technique to deal with missing data or NAN data.
+        6. Always follow the flow of Thought: , Observation:, Action: and Answer: as in template below strictly. 
 
 SQLQuery: "SQL Query to run"
 
@@ -46,8 +53,6 @@ Only use the following tables:
 Some examples of SQL queries that corrsespond to questions are:
 
 {few_shot_examples}
-
-Database_Output : {Result_Format}
 
 """
 
