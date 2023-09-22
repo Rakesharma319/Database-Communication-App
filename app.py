@@ -92,15 +92,13 @@ if UserInput := st.chat_input("Create a Snowflake query for top 5 customers by m
 			full_response += response.choices[0].delta.get("content", "")
 			message_placeholder.markdown(full_response + "▌")
 		message_placeholder.markdown(full_response)
-		
-
 	st.session_state.messages.append({"role": "assistant", "content": full_response})
-
+	
+	
 	# Execute SQL in Database.
 	OutPut_raw=full_response
 	RawSQL=f"{OutPut_raw}"
 	CleanSQL=RawSQL.replace("SQLQuery: \n","")
 	Database_Output=sq(f'''{CleanSQL}''',conn)
-	#st.markdown(Database_Output)
-	st.session_state.messages.append({"role": "assistant", "content": Database_Output})
+	st.markdown(Database_Output)
 	
