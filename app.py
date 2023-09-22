@@ -95,7 +95,7 @@ if UserInput := st.chat_input("Create a Snowflake query for top 5 customers by m
 		
 
 	st.session_state.messages.append({"role": "assistant", "content": full_response})
-	message_placeholder = st.empty()
+
 	# Execute SQL in Database.
 	OutPut_raw=full_response
 	RawSQL=f"{OutPut_raw}"
