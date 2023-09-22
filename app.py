@@ -45,7 +45,7 @@ TableSchema = gts()
 
 Prompt = f"""Given an input question, first create a syntactically correct {dialect} query to run, 
 always show distinct data,
-Show limited 10 rows until user ask for all rows.
+default show limited 10 rows until user ask for all rows.
 
 SQLQuery: "SQL Query to run"
 
