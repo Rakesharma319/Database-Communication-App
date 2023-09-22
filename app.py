@@ -36,7 +36,7 @@ with col1:
 	ChatInput=st.text_input("Create a Snowflake query for top 5 customers by maximum total invoice")
 	
 	st.text("Table List")
-    st.table(tables_List)
+	st.table(tables_List)
 
 
 
