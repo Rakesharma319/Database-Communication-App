@@ -80,22 +80,18 @@ if UserInput := st.chat_input("Create a Snowflake query for top 5 customers by m
 			#message_placeholder.markdown(full_response + "▌")
 			
 			# Execute SQL in Database.
-			
+			conn = sqlite3.connect('chinook.db')
+
+			def sq(str,con=conn):
+				return pd.read_sql('''{}'''.format(str), con)
+
 			RawSQL=f"{full_response}"
+			
 			CleanSQL=RawSQL.replace("SQLQuery: \n","")
 			
-			def execute_sql_query(self, query, limit=300):
-				conn = sqlite3.connect('chinook.db')
-				result = pd.read_sql_query(query, conn)
-				result = result.infer_objects()
-				for col in result.columns:
-					if "date" in col.lower():
-						result[col] = pd.to_datetime(result[col], errors="ignore")
-				if limit is not None:
-					result = result.head(limit)  # limit to save memory
-				return result
+			#df=sq(f'''{CleanSQL}''',conn)
 			
-			Output=execute_sql_query(f'''{CleanSQL}''',300)
+			Output += sq(f'''{CleanSQL}''',conn)
 			message_placeholder.markdown(Output + "▌")
 		message_placeholder.markdown(Output)
 	st.session_state.messages.append({"role": "assistant", "content": Output})
