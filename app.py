@@ -80,14 +80,7 @@ for message in st.session_state.messages:
 	with st.chat_message(message["role"]):
 		st.markdown(message["content"])
 		
-# Accept user input
-if UserInput := ChatInput:
-	# Add user message to chat history
-	#st.session_state.messages.append({"role": "user", "content": UserInput})
-	# Display user message in chat message container
-	with st.chat_message("user"):
-		st.markdown(UserInput)
-		
+with col2:	
 	# Display assistant response in chat message container
 	with st.chat_message("assistant"):
 		message_placeholder = st.empty()
