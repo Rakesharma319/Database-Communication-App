@@ -81,6 +81,7 @@ if UserInput := st.chat_input("Create a Snowflake query for top 5 customers by m
 	st.session_state.messages.append({"role": "assistant", "content": full_response})
 	
 	# Execute SQL in Database.
+	OutPut_raw=full_response
 	conn = sqlite3.connect('chinook.db')
 	def sq(str,con=conn):
 		return pd.read_sql('''{}'''.format(str), con)
@@ -88,4 +89,4 @@ if UserInput := st.chat_input("Create a Snowflake query for top 5 customers by m
 	RawSQL=f"{OutPut_raw}"
 	CleanSQL=RawSQL.replace("SQLQuery: \n","")
 	df=sq(f'''{CleanSQL}''',conn)
-	st.markdown(full_response + "▌")
+	st.markdown(df + "▌")
