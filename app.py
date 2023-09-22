@@ -100,7 +100,7 @@ if UserInput := st.chat_input("Create a Snowflake query for top 5 customers by m
 		CleanSQL=RawSQL.replace("SQLQuery: \n","")
 		Database_Output=sq(f'''{CleanSQL}''',conn)
 	st.text(full_response)
-	#st.table(Database_Output)
+	st.table(Database_Output)
 	#st.session_state.messages.append({"role": "assistant", "content": full_response})
 	#st.session_state.messages.append({"role": "assistant", "content": Database_Output})
 
