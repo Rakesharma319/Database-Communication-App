@@ -37,6 +37,8 @@ Use the following format:
 
 SQLQuery: "SQL Query to run"
 
+Database_Output : "Display result of SQL qyery after successfully run."
+
 Only use the following tables:
 
 {TableSchema}.
@@ -88,7 +90,7 @@ if UserInput := st.chat_input("Create a Snowflake query for top 5 customers by m
 		OutPut_raw=full_response
 		RawSQL=f"{OutPut_raw}"
 		CleanSQL=RawSQL.replace("SQLQuery: \n","")
-		df=sq(f'''{CleanSQL}''',conn)
-		st.markdown(df)
+		Database_Output=sq(f'''{CleanSQL}''',conn)
+		st.markdown(Database_Output)
 	st.session_state.messages.append({"role": "assistant", "content": full_response})
 	
