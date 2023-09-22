@@ -25,7 +25,7 @@ def sq(str,con=conn):
 dialect="SQL"
 
 Result_Format = """
-After successfully running SQL , result display should be formatted as per output, as below mentioned,
+After successfully running SQL , display results as below mentioned formats,
 1. if result is in row and column then it should be proper table format.
 2. if single row then display as simple text
 """
