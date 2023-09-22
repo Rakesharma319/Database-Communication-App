@@ -37,7 +37,7 @@ Use the following format:
 
 SQLQuery: "SQL Query to run"
 
-Database_Output : "Display result of SQL qyery after successfully run."
+Database_Output : "Display result of SQL qyery after successfully run in proper row and columns format."
 
 Only use the following tables:
 
