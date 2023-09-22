@@ -26,7 +26,7 @@ dialect="SQL"
 
 Result_Format = """
 After successfully running SQL , display results as below mentioned formats,
-1. if result is in row and column then it should be proper table format.
+1. if result is in tablix format then display properly in row and column.
 2. if single row then display as simple text
 """
 
@@ -43,7 +43,6 @@ Use the following format:
 
 SQLQuery: "SQL Query to run"
 
-Database_Output : {Result_Format}
 
 Only use the following tables:
 
@@ -52,6 +51,8 @@ Only use the following tables:
 Some examples of SQL queries that corrsespond to questions are:
 
 {few_shot_examples}
+
+Database_Output : {Result_Format}
 
 """
 
