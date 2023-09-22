@@ -24,11 +24,7 @@ def sq(str,con=conn):
 
 dialect="SQL"
 
-Result_Format = """
-After successfully running SQL , display results as below mentioned formats,
-1. if result is in tablix format then display properly in row and column.
-2. if single row then display as simple text
-"""
+Result_Format ="After successfully running SQL , if result is in tablix format then display properly in row and column,if single row then display as simple text."
 
 few_shot_examples="""Select col1,col2
 from tabl t1 join tabl2 t2 on t1.col1=t2.col2
@@ -41,11 +37,8 @@ TableSchema = gts()
 Prompt = f"""Given an input question, first create a syntactically correct {dialect} query with only required tables and coloumns to run, then look at the results of the query and return the answer.
 Use the following format:
 
-
-
 SQLQuery: "SQL Query to run"
 
-Database_Output : {Result_Format}
 
 Only use the following tables:
 
@@ -55,7 +48,7 @@ Some examples of SQL queries that corrsespond to questions are:
 
 {few_shot_examples}
 
-
+Database_Output : {Result_Format}
 
 """
 
