@@ -41,10 +41,11 @@ TableSchema = gts()
 Prompt = f"""Given an input question, first create a syntactically correct {dialect} query with only required tables and coloumns to run, then look at the results of the query and return the answer.
 Use the following format:
 
-Database_Output : {Result_Format}
+
 
 SQLQuery: "SQL Query to run"
 
+Database_Output : {Result_Format}
 
 Only use the following tables:
 
