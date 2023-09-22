@@ -83,7 +83,7 @@ if UserInput := st.chat_input("Create a Snowflake query for top 5 customers by m
 		
 	# Display assistant response in chat message container
 	with st.chat_message("assistant"):
-		message_placeholder = st.empty()
+		#message_placeholder = st.empty()
 		full_response = ""
 		for response in openai.ChatCompletion.create(
 			model=st.session_state["openai_model"],
