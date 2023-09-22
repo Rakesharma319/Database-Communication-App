@@ -45,50 +45,37 @@ Some examples of SQL queries that corrsespond to questions are:
 
 # Set a default model
 if "openai_model" not in st.session_state:
-    st.session_state["openai_model"] = "gpt-3.5-turbo"
+	st.session_state["openai_model"] = "gpt-3.5-turbo"
 
 # Initialize chat history
 if "messages" not in st.session_state:
-    st.session_state.messages = []
+	st.session_state.messages = []
 
 # Display chat messages from history on app rerun
 for message in st.session_state.messages:
-    with st.chat_message(message["role"]):
-        st.markdown(message["content"])
+	with st.chat_message(message["role"]):
+		st.markdown(message["content"])
 		
 # Accept user input
-if UserInput := st.chat_input("What is up?"):
+if UserInput := st.chat_input("Create a Snowflake query for top 5 customers by maximum total invoice"):
 	# Add user message to chat history
-    st.session_state.messages.append({"role": "user", "content": f"{prompt},Question: {UserInput}}")
+	st.session_state.messages.append({"role": "user", "content": UserInput})
 	# Display user message in chat message container
-    with st.chat_message("user"):
-        st.markdown(UserInput)
+	with st.chat_message("user"):
+		st.markdown(UserInput)
 		
 	# Display assistant response in chat message container
-    with st.chat_message("assistant"):
-        message_placeholder = st.empty()
-        full_response = ""
-        for response in openai.ChatCompletion.create(
+	with st.chat_message("assistant"):
+		message_placeholder = st.empty()
+		full_response = ""
+		for response in openai.ChatCompletion.create(
 			model=st.session_state["openai_model"],
-			messages = [{"role": "user", "content": Prompt}],
+			messages = [{"role": "user", "content": f'''{Prompt},Question: {UserInput}'''}],
 			temperature=0,
 			max_tokens=300,
 			stream=True
 		):
-		
-			OutPut_raw=response.choices[0].message["content"]
-  
-			# Execute SQL in Database.
-			conn = sqlite3.connect('chinook.db')
-
-			def sq(str,con=conn):
-				return pd.read_sql('''{}'''.format(str), con)
-
-			RawSQL=f"{OutPut_raw}"
-			CleanSQL=RawSQL.replace("SQLQuery: \n","")
-			df=sq(f'''{CleanSQL}''',conn)
-
-            full_response += response.choices[0].get("content", "")
-            message_placeholder.markdown(full_response + "▌")
-        message_placeholder.markdown(full_response)
-    st.session_state.messages.append({"role": "assistant", "content": full_response})
+			full_response += response.choices[0].delta.get("content", "")
+			message_placeholder.markdown(full_response + "▌")
+		message_placeholder.markdown(full_response)
+	st.session_state.messages.append({"role": "assistant", "content": full_response})
