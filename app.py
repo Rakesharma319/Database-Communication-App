@@ -80,4 +80,12 @@ if UserInput := st.chat_input("Create a Snowflake query for top 5 customers by m
 		message_placeholder.markdown(full_response)
 	st.session_state.messages.append({"role": "assistant", "content": full_response})
 	
-	st.markdown(full_response)
+	# Execute SQL in Database.
+	conn = sqlite3.connect('chinook.db')
+	def sq(str,con=conn):
+		return pd.read_sql('''{}'''.format(str), con)
+
+	RawSQL=f"{OutPut_raw}"
+	CleanSQL=RawSQL.replace("SQLQuery: \n","")
+	df=sq(f'''{CleanSQL}''',conn)
+	st.markdown(full_response + "▌")
