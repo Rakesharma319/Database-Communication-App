@@ -75,6 +75,7 @@ if UserInput := st.chat_input("Create a Snowflake query for top 5 customers by m
 			max_tokens=300,
 			stream=True
 		):
+			Output=""
 
 			full_response += response.choices[0].delta.get("content", "")
 			#message_placeholder.markdown(full_response + "▌")
