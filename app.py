@@ -95,7 +95,7 @@ if UserInput := st.chat_input("Create a Snowflake query for top 5 customers by m
 					result = result.head(limit)  # limit to save memory
 				return result
 			
-			Output=execute_sql_query(CleanSQL)
+			Output=execute_sql_query(CleanSQL,300)
 			message_placeholder.markdown(Output + "▌")
 		message_placeholder.markdown(Output)
 	st.session_state.messages.append({"role": "assistant", "content": Output})
