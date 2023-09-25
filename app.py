@@ -90,6 +90,11 @@ TableSchema = gts()
 Prompt = f"""Given an input question, first create a syntactically correct {dialect} query to run, 
 always show distinct data,
 default show limited 10 rows until user ask for all rows.
+        1. Use plotly library for data visualization. 
+            - If you want to show  user a plotly visualization, then use ```show(fig)`` 
+            - If you want to show user data which is a text or a pandas dataframe or a list, use ```show(data)```
+            - Never use print(). User don't see anything with print()
+        2. Lastly, don't forget to deal with data quality problem. You should apply data imputation technique to deal with missing data or NAN data.
 
 SQLQuery: "SQL Query to run"
 
