@@ -7,7 +7,7 @@ from Curr_User_Fun import Current_User as CU
 from GetTableSchema import get_table_schema as gts
 
 ########### App Title with User Name
-st.title("DataChat App")
+st.title("Database Communication App")
 curr_user=st.experimental_user['email']
 st.write(CU(curr_user))
 
