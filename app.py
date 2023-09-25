@@ -6,7 +6,6 @@ import plotly.express as px
 import plotly.graph_objs as go
 import openai
 from pathlib import Path
-from dotenv import load_dotenv
 import os
 import datetime
 import sqlite3
