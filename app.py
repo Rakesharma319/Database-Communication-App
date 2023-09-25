@@ -30,7 +30,7 @@ tables_List = sq(
     where type='table';'''
     ,conn)
 
-st.sidebar.text('Tables For Refrence')
+st.sidebar.text('Tables For Reference')
 st.sidebar.table(tables_List)
 
 
