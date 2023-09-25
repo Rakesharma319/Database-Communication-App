@@ -8,8 +8,10 @@ from GetTableSchema import get_table_schema as gts
 
 ########### App Title with User Name
 st.title("Database Communication App")
+
+delimiters = ["@", "GITHUB"]
 curr_user=st.experimental_user['email']
-st.write(CU(curr_user))
+st.write(CU(curr_user,delimiters))
 
 ########### Ask api key
 openai_api_key = st.sidebar.text_input('OpenAI API Key', type='password')
