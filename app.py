@@ -4,7 +4,6 @@ import pandas as pd
 import numpy as np
 import plotly.express as px
 import plotly.graph_objs as go
-from analyze import AnalyzeGPT, SQL_Query, ChatGPT_Handler
 import openai
 from pathlib import Path
 from dotenv import load_dotenv
