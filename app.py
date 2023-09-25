@@ -65,7 +65,7 @@ Some examples of SQL queries that corrsespond to questions are:
 
 # Set a default model
 if "openai_model" not in st.session_state:
-	st.session_state["openai_model"] = "gpt-3.5-"
+	st.session_state["openai_model"] = "gpt-3.5-turbo"
 
 # Initialize chat history
 if "messages" not in st.session_state:
