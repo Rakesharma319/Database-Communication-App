@@ -10,4 +10,4 @@ def Current_User(string,delimiters):
   result = string.split()
   result=result[0]
  
-  print(result)
+  return result
