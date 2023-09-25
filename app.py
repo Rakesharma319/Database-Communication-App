@@ -31,8 +31,9 @@ tables_List = sq(
     ,conn)
 
 st.sidebar.text('Tables For Reference')
-st.sidebar.table(tables_List)
-
+# st.sidebar.table(tables_List)
+df = pd.DataFrame(tables_List, columns=("Sr No.","Table Name")
+st.write(df)
 
 ########### Frame Prompt
 
