@@ -1,15 +1,8 @@
 ########### All Requirements Imported
-import streamlit as st
-import pandas as pd
-import numpy as np
-import plotly.express as px
-import plotly.graph_objs as go
 import openai
-from pathlib import Path
-import os
-import datetime
+import streamlit as st
 import sqlite3
-
+import pandas as pd
 from Curr_User_Fun import Current_User as CU
 from GetTableSchema import get_table_schema as gts
 
@@ -42,44 +35,11 @@ st.sidebar.table(tables_List)
 
 dialect="SQL"
 
-few_shot_examples = """
-<<Template>>
-Question: User Question
-Thought 1: Your thought here.
-Action: 
-```python
-#Import neccessary libraries here
-import numpy as np
-#Query some data 
-sql_query = "SOME SQL QUERY"
-step1_df = execute_sql(sql_query)
-# Replace 0 with NaN. Always have this step
-step1_df['Some_Column'] = step1_df['Some_Column'].replace(0, np.nan)
-#observe query result
-observe("some_label", step1_df) #Always use observe() instead of print
-```
-Observation: 
-step1_df is displayed here
-Thought 2: Your thought here
-Action:  
-```python
-import plotly.express as px 
-#from step1_df, perform some data analysis action to produce step2_df
-#To see the data for yourself the only way is to use observe()
-observe("some_label", step2_df) #Always use observe() 
-#Decide to show it to user.
-fig=px.line(step2_df)
-#visualize fig object to user.  
-show(fig)
-#you can also directly display tabular or text data to end user.
-show(step2_df)
-```
-Observation: 
-step2_df is displayed here
-Answer: Your final answer and comment for the question
-<</Template>>
-
-"""
+few_shot_examples="""Select col1,col2
+from tabl t1 join tabl2 t2 on t1.col1=t2.col2
+Where t1.col
+Group By t1.Col1
+Order By t2.Col1;"""
 
 TableSchema = gts()
 
