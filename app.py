@@ -11,7 +11,10 @@ st.title("Database Communication App")
 
 delimiters = ["@", "GITHUB"]
 curr_user=st.experimental_user['email']
-st.write(CU(curr_user,delimiters))
+if curr_user:
+	st.write(CU(curr_user,delimiters))
+else:
+	st.write("Hi User")
 
 ########### Ask api key
 openai_api_key = st.sidebar.text_input('OpenAI API Key', type='password')
